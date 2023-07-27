@@ -1,4 +1,4 @@
-#if !defined(REFEREE_H)
+#ifndef REFEREE_H
 #define REFEREE_H
 #include "Player.h"
 class Referee
@@ -8,7 +8,6 @@ private:
 public:
     Referee(/* args */);
     ~Referee();
-
     Player * refGame(Player * player1, Player * player2);
 };
 
@@ -16,4 +15,4 @@ public:
 
 
 
-#endif // REFEREE_H
+#endif

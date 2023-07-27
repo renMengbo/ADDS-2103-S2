@@ -1,19 +1,19 @@
-
 #include "Player.h"
+#include <iostream>
+using namespace std;
+
 Player::Player(/* args */)
 {
-    _name="NULL";
-
+     card=' ';
+     _name="NULL";
 }
 
 Player::~Player()
 {
 }
-
 char Player::makeMove(){
     return card;
-};
-
+}
 string Player::getName(){
     return _name;
-};
+    }

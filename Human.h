@@ -1,20 +1,19 @@
-#if !defined(HUMAN_H)
+#ifndef HUMAN_H
 #define HUMAN_H
-#include <iostream>
 #include "Player.h"
-using namespace std;
-
-class Human:public Player
+class Human: public Player
 {
 private:
     /* data */
 public:
-    Human(string name);
-     Human();
-    ~Human();
     char makeMove();
+    Human(/* args */);
+    Human(string name);
+    ~Human();
 };
 
 
 
-#endif // HUMAN_H
+
+
+#endif
