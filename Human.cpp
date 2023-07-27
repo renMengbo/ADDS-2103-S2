@@ -7,6 +7,11 @@ Human::Human(string name)
     _name=name;
 
 }
+Human::Human()
+{
+    _name="human";
+
+}
 
 Human::~Human()
 {

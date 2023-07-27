@@ -10,6 +10,7 @@ private:
     /* data */
 public:
     Human(string name);
+     Human();
     ~Human();
     char makeMove();
 };
