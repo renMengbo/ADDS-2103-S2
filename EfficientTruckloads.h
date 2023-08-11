@@ -12,7 +12,7 @@ private:
     std::vector<int> TrucksTable;
 public:
     EfficientTruckloads(/* args */);
-    int numTrucks(int numCrates, int loadSize,int);
+    int numTrucks(int numCrates, int loadSize);
     ~EfficientTruckloads();
 };
 

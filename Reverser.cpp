@@ -6,12 +6,12 @@
 using namespace std;
 
 
-Reverse::Reverse(/* args */)
+Reverser::Reverser(/* args */)
 {
   
 }
 
-int Reverse::reverseDigit(int value) 
+int Reverser::reverseDigit(int value) 
 {   
     //cout << "Digit = " << value <<"  value%10 = " << value%10 << endl;
    
@@ -32,7 +32,7 @@ int Reverse::reverseDigit(int value)
 	}
 }
 
-string Reverse::reverseString(string letters)
+string Reverser::reverseString(string letters)
 {   
          //cout <<"1:" << letters <<endl;
          
@@ -49,6 +49,6 @@ string Reverse::reverseString(string letters)
        
 }
 
-Reverse::~Reverse()
+Reverser::~Reverser()
 {
 }

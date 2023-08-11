@@ -1,5 +1,5 @@
-#ifndef REVERSE_H
-#define REVERSE_H
+#ifndef REVERSER_H
+#define REVERSER_H
 
 #include <iostream>
 #include <string>
@@ -7,15 +7,15 @@
 #include <ctype.h>
 using namespace std;
 
-class Reverse
+class Reverser
 {
 private:
     /* data */
 public:    
-    Reverse(/* args */);
+    Reverser(/* args */);
     int reverseDigit(int value); 
     string reverseString(string letters);
-    ~Reverse();
+    ~Reverser();
 };
 
-#endif //REVERSE_H
+#endif //REVERSER_H
