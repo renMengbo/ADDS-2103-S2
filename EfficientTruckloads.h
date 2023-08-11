@@ -13,6 +13,7 @@ private:
 public:
     EfficientTruckloads(/* args */);
     int numTrucks(int numCrates, int loadSize);
+    int numTrucks(int numCrates, int loadSize, int truckNums);
     ~EfficientTruckloads();
 };
 

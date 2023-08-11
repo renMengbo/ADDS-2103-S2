@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 #include <ctype.h>
-#include "Reverse.h"
+#include "Reverser.h"
 using namespace std;
 
 

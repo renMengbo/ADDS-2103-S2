@@ -10,6 +10,11 @@ EfficientTruckloads::EfficientTruckloads(/* args */)
   
 }
 
+int EfficientTruckloads::numTrucks(int numCrates, int loadSize) {
+    int truckNums=1;
+    return numTrucks(numCrates, loadSize, truckNums);
+}
+
 int EfficientTruckloads::numTrucks(int numCrates, int loadSize, int truckNums=1) {
   
     // if (numCrates < 2 || numCrates > 10000 ||loadSize < 1 )
