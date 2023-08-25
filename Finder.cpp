@@ -10,7 +10,7 @@
             size_t found = s1.find(s2.substr(0, i),index);
             if (found != string::npos) {
                 result.push_back(found);
-                index =found;
+                index =found+1;
             } else {
                 result.push_back(-1);
             }
