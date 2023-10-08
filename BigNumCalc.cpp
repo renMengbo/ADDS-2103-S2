@@ -5,7 +5,7 @@
   
 using namespace std;    
  
-std::list<int> bigNumCalc::buildBigNum(std::string numString) {  
+std::list<int> BigNumCalc::buildBigNum(std::string numString) {  
     std::list<int> result;  
     for (char c : numString) {  
         result.push_back(c - '0');  
@@ -13,7 +13,7 @@ std::list<int> bigNumCalc::buildBigNum(std::string numString) {
     return result;  
 }  
   
-std::list<int> bigNumCalc::add(std::list<int> num1, std::list<int> num2) {  
+std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2) {  
     std::list<int> result;  
     int carry = 0;  
       
@@ -34,7 +34,7 @@ std::list<int> bigNumCalc::add(std::list<int> num1, std::list<int> num2) {
     return result;  
 }  
   
-std::list<int> bigNumCalc::sub(std::list<int> num1, std::list<int> num2) {  
+std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {  
     std::list<int> result;  
     int borrow = 0;  
       
@@ -58,7 +58,7 @@ std::list<int> bigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
     return result;  
 }  
   
-std::list<int> bigNumCalc::mul(std::list<int> num1, std::list<int> num2) {  
+std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2) {  
     std::list<int> result;  
     int carry = 0;  
       
