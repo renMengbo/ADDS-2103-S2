@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "node.h"
 
 Node::Node()
 {
@@ -14,14 +14,14 @@ int Node::getData()
     return this->data;
 }
 
-void Node::setNext(Node *next)
+void Node::setLink(Node *link)
 {
-    this->next =next;
+    this->link =link;
 }
 
-Node* Node::getNext()
+Node* Node::getLink()
 {
-    return this->next;
+    return this->link;
 }
 
 Node::~Node()

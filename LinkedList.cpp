@@ -1,244 +1,160 @@
-#include "LinkedList.h"
+#include "linkedlist.h"
 #include <iostream>
 #include <limits>
-using namespace std;
 
-LinkedList::LinkedList()
-{
-    head = new Node();    
-    head->setNext(nullptr);
+
+LinkedList::LinkedList() {
+    head = nullptr;
 }
-LinkedList::LinkedList(int Array[] ,int size)
-{
-    head = new Node();    
-    head->setNext(nullptr);
-    for (int i = 0; i < size; i++)
+
+LinkedList::LinkedList(int* array, int len)
+{   
+    Node *current = nullptr;      //当前节点指针
+    for (int i = 0; i < len; i++)
     {   
         Node *NewNode = new Node();//在堆heap中创建新节点
-        NewNode->setData(Array[i]);  //设置新节点的值
-        NewNode->setNext(nullptr) ;
+        NewNode->setData(array[i]);  //设置新节点的值，数组以地址（指针）传入，使用采用数组名和索引
+        NewNode->setLink(nullptr) ;
         if (i == 0)
         {
-            head->setNext(NewNode);           
+            head = NewNode; 
+            current =  head;          //当前节点指针指向第一个节点，即头中存储的地址    
         } else
         {
-            Node *temp=head;
-            while( temp->getNext() != nullptr)
-            {
-                temp = temp->getNext(); //用temp不断指向下一个节点
-            }
-            //执行到这时，说明temp是最后一个节点，temp的下一个节点为NULL
-            temp->setNext( NewNode );//插入节点
+            current->setLink(NewNode) ;  //前节点地址指向新节点
+            current = NewNode;        //当前节点指针移到新节点地址
         }  
 
-//cout << i<<"$" <<Array[i]<<endl;   
+//cout << i<<"$" <<array[i]<<endl;   
+    }   
+
+}
+
+LinkedList::~LinkedList() {
+    Node* current = head;  
+    while(current != nullptr) {  
+        Node* next = current->getLink();  //保存准备删除的当前地址里存储的下节点地址
+        delete current;              //通过逐个采用关键字delete 释放当前地址
+        current = next;  
+    }  
+}
+
+
+void LinkedList:: insertPosition(int pos, int newNum){
+    //method to insert a new node containing the number newNum into the pos position.
+    //A pos of 1 (or less) places a new node at the front of the list.
+    //A pos that exceeds the size of the list should add the node to the end of the list. 
+    Node* newNode = new Node;  
+    newNode->setData(newNum);
+ //   newNode->setLink(nullptr) ;
+      
+    if (pos <= 1) {              //头部插入
+        newNode->setLink(head) ; //把head里面存放的下一节点地址，放入新节点，这样在链表头部插入节点
+        head = newNode;          // head存放在头部插入的新节点地址
+    } else {  
+        Node* prev = head;  //找到插入位置的前一节点
+        int index = 1;  
+        while (index < pos - 1 && prev != nullptr) {  //pos =2 ，插入2-3之间，先找到2节点
+            prev = prev->getLink(); //prev = prev->next;  
+            index++;  
+        }  
+  
+        if (prev == nullptr) {  //给的位置超出list的边界
+            return;  
+        }  
+  
+        // 插入新节点
+        newNode->setLink(prev->getLink()) ;   //  newNode->next = prev->next;  
+        prev->setLink(newNode);   //prev->next = newNode;  
+    }      
+}
+
+    //- method to remove the node at position pos from the list and delete it. If it successfully deletes the node, it should return true. 
+    //If pos is out-of-bounds, it should return false.
+bool LinkedList::deletePosition(int pos) {  
+    if (pos < 1 || pos > getSize()) {  
+        return false; // Position is out of bounds  
+    }  
+  
+    Node* prev = head;  
+    Node* current = head->getLink();  
+    int index = 1;  
+  
+    while (index < pos - 1) {  
+        prev = current;  
+        current = current->getLink();  
+        index++;  
+    }  
+  
+    prev->setLink(current->getLink()); // 把当前节点里面存放的后一节点地址，放入前一节点存储，跳过了当前节点
+    delete current;                    // 通过 Delete 释放当前节点内存  
+  
+    return true; 
+}
+
+int LinkedList::get(int pos) {  
+    //- method that returns pos's Node's data member variable. If pos is out-of-bounds, it should return std::numeric_limits < int >::max().
+    // (More info: http://www.cplusplus.com/reference/limits/numeric_limits/Links to an external site.).    
+    if (pos < 1 || pos > getSize()) {  
+        return std::numeric_limits<int>::max();  
+    }  
+  
+    Node* current = head;  
+    for (int i = 1; i < pos; i++) {  
+        if (current == nullptr) {  
+            return std::numeric_limits<int>::max();  
+        }  
+        current =  current->getLink();;  
+    }  
+  
+    if (current == nullptr) {  
+        return std::numeric_limits<int>::max();  
+    }  
+  
+    return current->getData();  
+}
+
+int LinkedList::search(int target) {
+    //which searches the list for the first occurrence of target in the list and returns the index of where target is. If target does not exist in the list, return -1.  
+    Node* current = head; //开始从头部节点搜索  
+    int index = 0; //用于记录当前节点的索引  
+  
+    while (current != nullptr) {  
+        if (current->getData() == target) {  
+            //找到匹配的节点，返回其索引  
+            return index;  
+        }  
+        current = current->getLink(); //移动到下一个节点  
+        index++; //更新索引  
+    }  
+  
+    //如果遍历完整个链表仍未找到匹配的节点，返回-1  
+    return -1;  
+}
+
+
+void LinkedList::printList() {
+    //- method that prints the data of all the nodes in the list, separated by spaces and encapsulated by '[' and ']'. In the case of an empty list, it prints nothing.
+    Node* current = head; 
+    std::cout << "[" ; 
+    while (current != nullptr) { 
+        std::cout << current->getData() << " "; 
+        current = current->getLink(); 
     } 
-    
-
-}
-int  LinkedList::getSize()
-{
-    int size = 1;
-    Node *temp=head->getNext();
-    while( temp->getNext() != nullptr)
-    {
-        temp = temp->getNext();
-        size++;
-    }
-    return size;
-}
-void LinkedList::addFront(int newItem)
-{
-    Node *NewNode = new Node();//在堆heap中创建新节点
-    NewNode->setData(newItem);  //设置新节点的值
-    if (head->getNext() == nullptr )
-    {
-        NewNode->setNext(nullptr);//空链表，表设置新节点后面节点的地址为空，链接起来        
-    }else
-    {
-        NewNode->setNext(head->getNext());//非空链表，设置新节点后面节点的地址为头指针中指向的地址，链接起来
-    } 
-    head->setNext(NewNode);    //新节点的地址放入链表的头指针    
+    std::cout <<"]"<< std::endl; 
 }
 
-void LinkedList::addEnd(int newItem)
-{
-    Node *NewNode = new Node();//在堆heap中创建新节点
-    NewNode->setData(newItem);  //设置新节点的值
-    NewNode->setNext(nullptr);//链表最后一个节点，所以设置新节点后面节点的地址为空
-    if (head->getNext() == nullptr)
-    {
-        head->setNext(NewNode) ;//空链表，在head指针中放新节点地址，链接起来
-    }else
-    {
-        Node *temp=head->getNext();
-        while( temp->getNext() != nullptr)
-        { 
-cout << temp->getData()<<"$" << temp->getNext()<<endl;               
-            temp = temp->getNext(); //用temp不断指向下一个节点
-        }
-        //执行到这时，说明temp是最后一个节点，temp的下一个节点为NULL
-        temp->setNext( NewNode );//插入节点
-cout << endl;        
-    } 
-}
-void LinkedList::addAtPosition(int position, int newItem)
-{
-    int size = getSize();
-    if (position > size)
-    {
-        addEnd(newItem);
-    }else if (position <= 1)
-    {
-        addFront(newItem);
-    }else
-    {
-        int pos = 1;
-        Node *temp=head->getNext();
-        Node *Front_temp = temp;
-        while( temp->getNext() != nullptr)
-        {
-            Front_temp = temp; //保存前一个结点       
-            temp = temp->getNext();
-            pos++;
-            if (pos == position )//找到插入点
-            {               
-            break;
-            }
-            
-        }
+int LinkedList::getSize() {
+    //get LinkList size
+    unsigned int position = 0;
+    Node* current = head; 
 
-        Node *NewNode = new Node();//在堆heap中创建新节点
-        NewNode->setData(newItem);  //设置新节点的值
-        Front_temp->setNext(NewNode);
-        NewNode->setNext(temp );//插入节点
-    }    
-}
-
-int  LinkedList::search(int item)
-{
-    int position = 1;
-    Node *temp = head->getNext();
-    while(temp->getNext() != nullptr)
-    {
-        if(temp->getData() == item)
-        {   
-            cout << position << " ";
-            return position;
-        }        
-        temp = temp->getNext();
+    while (current != nullptr) { 
+        current = current->getLink(); 
         position++;
-    }
-    cout << 0 << " ";
-    return 0;
-}
-void LinkedList::deleteFront()
-{   
-    Node *temp;
-    if (head->getNext() != nullptr)
-    {
-        temp = head->getNext();
-        head->setNext(temp->getNext());
-    }
-    else //空链表
-    {
-        return;
-    }
-}
-void LinkedList::deleteEnd()
-{
-    if (getSize()>1)
-    {
-        Node *temp=head->getNext();
-        Node *Front_temp = temp;
-        while( temp->getNext() != nullptr)
-        {
-            Front_temp = temp; //保存前一个结点       
-            temp = temp->getNext();
-        }
-        Front_temp->setNext(nullptr);
-    }else
-    {
-        return;
-    }
-}
-void LinkedList::deletePosition(int position)
-{   
-    int size = getSize();
-    if (position < 1||position > size)
-    {
-        cout << "Outside range!" << endl;
-    }else
-    {
-        if (size == 1)
-        {
-            deleteFront(); 
-        }else if (size == position)
-        {
-            deleteEnd();
-        }else        
-        {
-            int pos = 1;
-            Node *temp=head->getNext();
-            Node *Front_temp= temp;
-            while( temp->getNext() != nullptr)
-            {
-                Front_temp= temp;
-                temp = temp->getNext();
-                pos++;
-                if (pos == position )//找到position点
-                {
-                   Front_temp->setNext(temp->getNext());//删除temp节点
-                }
-            }
-        }
-    }
-}
-int  LinkedList::getItem(int position)
-{
-    if (position >= 1||position <= getSize() )
-    {
-        int pos = 1;
-        Node *temp=head->getNext();
-        while( temp->getNext() != nullptr)
-        {
-            temp = temp->getNext();
-            pos++;
-            if (position == pos )//找到position点
-            {
-                cout << temp->getData() <<" ";
-                return temp->getData();
-            }
-        }
-        //delete temp;//没有用new申请内存，不需要释放，由于前面已经return，无法在这里释放。
-    }     
-    cout<<"numeric_limits<int>::max() = "<< numeric_limits<int>::max() <<" " ;  //int的最大值
-    return numeric_limits<int>::max();    
+    } 
+        
+    return position;
 }
 
-void LinkedList::printItems()
-{
-    Node *temp = head;
-    while( temp->getNext() != nullptr)
-    {
-        temp = temp->getNext();
-        cout <<temp->getData()<<" ";
-    }
-    cout <<endl;
-}  
 
-LinkedList::~LinkedList()
-{
-    /*
-    Node *temp = nullptr;
-    temp = head; //用一个临时节点保存头结点
-    //遍历链表，每次先保存头结点的next结点，然后删除头结点
-    while (nullptr != temp)
-    {
-        temp = head->getNext();//取next结点
-        delete head;//删除前结点
-        head = temp;//重新作为前结点
-    }    
-    //cout << "链表已经清空\n";
-    */
-}
