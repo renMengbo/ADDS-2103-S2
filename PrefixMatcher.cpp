@@ -50,7 +50,7 @@ using namespace std;
         // for (int i = 0; i < networkAddress.length(); i++) {
             // cout<< "prefix:"<< c <<"--"<< c-'0'<< endl;
             if (cur->children[c-'0'] == nullptr) { // 如果该字符还没有插入到Trie树中
-            break; //return; // 直接返回，因为不存在该字符开头的单词,此时result为空
+                return 0;//break; //return; // 直接返回，因为不存在该字符开头的单词,此时result为空
             } else {
                 cur = cur->children[c-'0']; // 继续向下遍历
                 if (cur->ID) { // 如果当前节点是一个路由的结尾，说明找到了一个符合条件的路由               
