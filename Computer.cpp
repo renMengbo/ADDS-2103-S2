@@ -8,7 +8,7 @@ Computer::Computer(/* args */) {
 Computer::~Computer() {}
 Move* Computer::makeMove() {
   string move;
-  cout << "please intput Computer move: " << endl;
+  cout << "Enter Move:" << endl;
   cin >> move;
   _move->setName(move);
   return _move;

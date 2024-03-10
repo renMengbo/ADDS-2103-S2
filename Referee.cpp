@@ -45,7 +45,7 @@ void Referee::changeStringToChar(Player * player1, Player * player2){
 
   if (index1==-1||index2==-1)
   {
-    cout << "The move string is not in the array of game rules!" <<endl;
+    //cout << "The move string is not in the array of game rules!" <<endl;
     return;
   }
    

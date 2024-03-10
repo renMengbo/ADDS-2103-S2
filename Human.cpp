@@ -21,7 +21,7 @@ Human::~Human() {
 
 Move* Human::makeMove() {
   string move;
-  cout << "please intput you move: " << endl;
+  cout << "Enter Move:" << endl;
   cin >> move;
  // cout <<"move: "<< move <<endl;
   _move->setName(move);
