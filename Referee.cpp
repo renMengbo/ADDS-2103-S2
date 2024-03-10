@@ -59,10 +59,10 @@ void Referee::changeStringToChar(Player * player1, Player * player2){
   _index = (size+index1-1)%size ;   
   result.insert(result.begin(), str_array[_index]);
 
-  for (const auto& item : result) {
-      std::cout << item << " ";
-  }
-  std::cout << std::endl;
+  // for (const auto& item : result) {
+  //     std::cout << item << " ";
+  // }
+  // std::cout << std::endl;
 
 //The first move takes the middle position 'S' and determines the position of the second move according to the game rules array
   player1-> card = 'S' ; // middle position
