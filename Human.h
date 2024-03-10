@@ -1,16 +1,17 @@
-#if !defined(HUMAN_H)
+#ifndef HUMAN_H
 #define HUMAN_H
 
 #include "Player.h"
+
 class Human : public Player {
- private:
-  /* data */
- public:
-  Human(/* args */);
-  Human(string name);
-  ~Human();
-  // char makeMove();
-  Move* makeMove();
+public:
+    Human(std::string name);
+    Human();
+    Move* makeMove() override;
+    std::string getName() override;
+
+private:
+    std::string name;
 };
 
 #endif // HUMAN_H

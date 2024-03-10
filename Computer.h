@@ -1,16 +1,16 @@
-#if !defined(COMPUTER_H)
+#ifndef COMPUTER_H
 #define COMPUTER_H
 
-#include "Move.h"
 #include "Player.h"
+
 class Computer : public Player {
- private:
-  /* data */
- public:
-    Computer(/* args */);
-  ~Computer();
-  //char makeMove();
-  Move* makeMove();
+public:
+    Computer();
+    Move* makeMove()  override;
+    std::string getName()  override;
+
+private:
+    std::string name;
 };
 
 #endif // COMPUTER_H

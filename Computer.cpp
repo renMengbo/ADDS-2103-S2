@@ -1,15 +1,12 @@
 #include "Computer.h"
-#include <iostream>
-using namespace std;
 
-Computer::Computer(/* args */) { 
-  _name = " Computer "; 
-}
-Computer::~Computer() {}
+Computer::Computer() : name("Computer") {}
+
 Move* Computer::makeMove() {
-  string move;
-  //cout << "Enter Move:" << endl;
-  cin >> move;
-  _move->setName(move);
-  return _move;
+    // Always return a Move object representing "Rock"
+    return new Rock();
+}
+
+std::string Computer::getName()  {
+    return name;
 }

@@ -1,23 +1,15 @@
-#if !defined(PLAYER_H)
+#ifndef PLAYER_H
 #define PLAYER_H
-#include <string>
 
 #include "Move.h"
-using namespace std;
+#include <string>
 
 class Player {
- private:
-    /* data */
- public:
-  Move* _move = new Move;  
-  string _name;
-  char card;
+public:
+    virtual ~Player() {} // Virtual destructor to ensure proper cleanup
 
-  Player(/* args */);
-  ~Player();
-  //virtual char makeMove();
-  virtual Move* makeMove();
-  string getName();
+    virtual Move* makeMove()  = 0; // Pure virtual function, must be implemented by derived classes
+    virtual std::string getName()  = 0; // Pure virtual function, must be implemented by derived classes
 };
 
 #endif // PLAYER_H
