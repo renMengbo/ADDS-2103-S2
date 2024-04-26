@@ -46,7 +46,7 @@ void LinkedList:: insertPosition(int pos, int newNum){
     //A pos that exceeds the size of the list should add the node to the end of the list. 
     Node* newNode = new Node;  
     newNode->setData(newNum);
- //   newNode->setLink(nullptr) ;
+    newNode->setLink(nullptr) ;
       
     if (pos <= 1) {              //头部插入
         newNode->setLink(head) ; //把head里面存放的下一节点地址，放入新节点，这样在链表头部插入节点
