@@ -1,7 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
-class Node {
+class Node {    
+private:
     int data = 0;
     Node* link = nullptr;
 public:
