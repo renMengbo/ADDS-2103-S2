@@ -4,6 +4,7 @@
 #include "Node.h"
 
 class LinkedList {
+private:
     Node* head;
 
 public:
