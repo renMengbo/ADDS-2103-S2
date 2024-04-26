@@ -88,7 +88,7 @@ bool LinkedList::deletePosition(int pos) {
   
     prev->setLink(current->getLink()); // 把当前节点里面存放的后一节点地址，放入前一节点存储，跳过了当前节点
     delete current;                    // 通过 Delete 释放当前节点内存  
-    prev->setLink(nullptr);
+
     return true; 
 }
 
